@@ -1,0 +1,69 @@
+{
+  "_nota": "Copia este archivo a linkedin/config.json y llena los placeholders <>. El config.json real está gitignored (contiene tus links y estado).",
+  "timezone": "America/Mexico_City",
+  "session": {
+    "name": "linkedin",
+    "profile": ".auth/pw-linkedin",
+    "login_url": "https://www.linkedin.com/login",
+    "connections_url": "https://www.linkedin.com/mynetwork/invite-connect/connections/",
+    "_nota": "SIEMPRE abrir con --persistent --profile=.auth/pw-linkedin --browser=chrome"
+  },
+  "limits": {
+    "v1_frio_per_day": 5,
+    "warm_per_day": 10,
+    "delay_min_s": 45,
+    "delay_max_s": 150,
+    "rampa": {
+      "_como_funciona": "Escalones por fecha (YYYY-MM-DD: cap). Si hay una fecha <= hoy con valor mayor, se usa ese valor. Subir SOLO tras varios dias sin friccion; ante friccion, bajar un escalon y esperar 3 dias.",
+      "<YYYY-MM-DD>": 5,
+      "<YYYY-MM-DD+7>": 8,
+      "<YYYY-MM-DD+14>": 10,
+      "<YYYY-MM-DD+21>": 12
+    },
+    "_nota_que_cuenta": "El cap cuenta SOLO V1 en frio. Respuestas a quien nos escribio NO cuentan. W (like+comentario) tiene su cap aparte (warm_per_day).",
+    "_nota_techo": "El techo de 12 es prudencia, no dato — LinkedIn no publica umbrales."
+  },
+  "kill_switch": false,
+  "_kill_nota": "true = NO se envia NADA. Manual de encender y apagar; usarlo ante friccion (checkpoint/captcha/banner) o emergencia.",
+  "pausa_envios_hasta": null,
+  "_pausa_nota": "Fecha YYYY-MM-DD. Mientras hoy < fecha: no se envia nada, pero si se investiga/redacta. Se levanta sola.",
+  "tone": "tuteo",
+  "agenda": {
+    "_nota": "Links por temperatura: cita_directa para calientes (directo al calendario), contexto para tibios (landing/video que explica la oferta).",
+    "cita_directa": "<URL de tu calendario>",
+    "contexto": "<URL de tu landing con video (opcional)>"
+  },
+  "ebook_pdf": "<ruta local del PDF del lead magnet, ej. assets/mi-guia.pdf>",
+  "ebook_url_fallback": "<URL del lead magnet por si el adjunto falla>",
+  "crm": {
+    "sync_activo": false,
+    "_nota": "Si tienes CRM (ej. GoHighLevel), activa y llena. Si no, dejalo en false: el estado local es la fuente.",
+    "pipeline_id": "<id del pipeline de nurture>",
+    "pipeline_name": "<nombre>",
+    "stage_ids": {
+      "conectado": "<id>",
+      "conversacion_iniciada": "<id>",
+      "respondio": "<id>",
+      "interesado": "<id>",
+      "invitado_cita": "<id>",
+      "agendo_cita": "<id>",
+      "asistio_cita": "<id>",
+      "seguimiento": "<id>",
+      "cierre": "<id>"
+    },
+    "tags": {
+      "base": ["linkedin-nurture"],
+      "temp": ["temp-frio", "temp-tibio", "temp-caliente"],
+      "condicional": ["leadmagnet-enviado", "opt-out", "agendo-cita"],
+      "_nota": "temp-* se CAMBIA (remover el viejo), no se acumula."
+    },
+    "source": "LinkedIn Nurture",
+    "_source_nota": "Usar SIEMPRE el mismo valor exacto en las oportunidades o los filtros por origen se rompen.",
+    "consultation_calendar_ids": []
+  },
+  "runtime": {
+    "last_fase_a": null,
+    "last_fase_b": null,
+    "_nota": "Lo actualiza el sistema."
+  }
+}

@@ -1,0 +1,43 @@
+#!/bin/bash
+# linkedin-fase-a-cron.sh.example — plantilla OPCIONAL para programar la Fase A (investigar + redactar).
+# ⚠️ NO ENVÍA NADA: solo detecta respuestas, cosecha, investiga, cura y redacta a linkedin/pending/.
+#    El envío sigue siendo manual ("envía los mensajes de LinkedIn aprobados").
+# Actívalo solo cuando lleves semanas operando sin fricción.
+#
+# Setup (macOS, launchd):
+#   1. Copia este archivo a linkedin-fase-a-cron.sh, edita RUTA_PROYECTO y da permisos: chmod +x
+#   2. Crea un LaunchAgent (~/Library/LaunchAgents/) que lo ejecute 1-2 veces al día en horario laboral.
+#   3. Requiere que Claude Code pueda correr headless (claude -p) con los permisos ya otorgados
+#      en .claude/settings.local.json (allowlist), y la sesión de LinkedIn vigente en .auth/pw-linkedin.
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+PROJ="<RUTA_PROYECTO>"   # ej. /Users/tuusuario/kit-linkedin-prospeccion
+cd "$PROJ" || exit 1
+
+TS="$(date +%Y%m%d-%H%M)"
+LOG="$PROJ/linkedin/logs/fase-a-$TS.log"
+mkdir -p "$PROJ/linkedin/logs"
+
+PROMPT='Corre la FASE A del nurture de LinkedIn. Estas en una corrida HEADLESS por cron, sin usuario presente. LEE primero (herramienta Read) .claude/skills/linkedin-nurture/SKILL.md y .claude/skills/playwright-web/references/receta-linkedin-nurture.md para el procedimiento y selectores; NO invoques la herramienta Skill.
+
+### REGLA MADRE
+Esta corrida REDACTA, NO ENVIA. Nada de li-senddm.js ni li-comment.js en modo envio. Todo borrador va a linkedin/pending/.
+
+### FRENOS
+1) Si linkedin/config.json -> kill_switch es true, NO hagas NADA y termina registrando "kill_switch activo" en el log.
+2) Si la sesion de LinkedIn expiro (login wall), registra "SESION EXPIRADA - requiere re-login headed" y termina.
+
+### PASOS
+1) Abre la sesion: npx playwright-cli -s=linkedin open "<url>" --persistent --profile=.auth/pw-linkedin --browser=chrome (SIEMPRE con --persistent --profile; verifica con list que user-data-dir sea .auth/pw-linkedin).
+2) REVISAR RESPUESTAS: por cada hilo activo en linkedin/conversaciones.json con esperando_respuesta=true, detecta si el prospecto respondio (li-readdm.js / li-readthread.js). Si respondio: sube la temperatura segun RECON y REDACTA la respuesta a pending/ (profundizar sin acelerar, cero pitch; V2/C solo si esta tibio/caliente).
+3) COSECHAR NUEVOS: toma hasta 3 conexiones nuevas no-vistas (dedupe contra linkedin/seen-users.json), INVESTIGA su perfil (li-profile.js, posts, web con WebFetch, email/tel con li-contactinfo.js), cura con los criterios de references/cliente-ideal.md y REDACTA el W o V1 RECON a pending/ (2 frases max, tuteo, 100% sobre el prospecto, cero pitch, anclado en un dato real; variacion obligatoria).
+4) Actualiza conversaciones.json / seen-users.json / runtime.last_fase_a con el helper atomico (node scripts/li-save-json.cjs) — NUNCA escritura directa.
+5) Deja en el log un resumen: redactados (con nombres), descartados y por que, respuestas detectadas.
+
+### RESTRICCION DE HERRAMIENTAS
+Usa SOLO: npx playwright-cli, node, mkdir, ls, mv, cp, date, y las herramientas Read/Write/Edit. Para procesar texto o JSON usa node.'
+
+echo "=== LinkedIn Fase A cron @ $TS ===" > "$LOG"
+claude -p "$PROMPT" >> "$LOG" 2>&1
+echo "=== exit code: $? @ $(date +%H:%M:%S) ===" >> "$LOG"

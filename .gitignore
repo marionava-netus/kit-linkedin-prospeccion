@@ -1,0 +1,17 @@
+# Estado del nurture (datos de prospectos — nunca se commitea)
+linkedin/*
+!linkedin/config.example.json
+
+# Sesiones de navegador y credenciales
+.auth/
+.env
+
+# Salidas de trabajo
+downloads/
+.playwright-cli/
+
+# Node
+node_modules/
+
+# macOS
+.DS_Store

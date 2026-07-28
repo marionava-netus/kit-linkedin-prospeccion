@@ -1,0 +1,10 @@
+{
+  "name": "kit-linkedin-prospeccion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kit de prospección/nurture por LinkedIn con Claude Code + Playwright CLI (framework RECON, modo aprobación, anti-baneo).",
+  "devDependencies": {
+    "@playwright/cli": "^0.1.14",
+    "playwright": "^1.60.0"
+  }
+}
