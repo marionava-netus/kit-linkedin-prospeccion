@@ -70,12 +70,14 @@ También aplica cuando se hable de la **estrategia/prospección/nurture de Linke
 - **Detección de fricción:** los scripts de envío chequean checkpoint/captcha/banner de límite → **abortan** + activan kill_switch + avisan. Ante `aborted:true` → detener todo.
 - **Si usas otra herramienta de automatización de LinkedIn en paralelo** (conexiones masivas, etc.): corre este sistema en ventana horaria NO solapada — LinkedIn no debe ver dos motores actuando a la vez. Este sistema NUNCA manda solicitudes de conexión; solo trabaja con **ya-conectados**.
 
-## Sync a CRM (OPCIONAL — `config.crm.sync_activo`)
-Si el usuario tiene CRM (GoHighLevel u otro), cada envío/respuesta se refleja: contacto + nota con el research + tags (`linkedin-nurture`, `temp-<frío/tibio/caliente>`) + oportunidad en un pipeline de nurture cuyas etapas midan **nivel de conversación** (Conectado → Conversación iniciada → Respondió → Interesad@ → Invitado a cita → Agendó → Cierre). Detalles y procedimiento en la receta. Claves de diseño:
+## Sync del pipeline en NetUs Lead Machine (`config.crm.sync_activo`)
+Cada envío/respuesta se refleja en **Lead Machine** vía API REST con el PIT (nunca navegador): contacto + nota con el research + tags (`linkedin-nurture`, `temp-<frío/tibio/caliente>`) + **oportunidad que avanza de etapa** en el pipeline "LinkedIn Nurture" (Conectado → Conversación iniciada → Respondió → Interesad@ → Invitado a cita → Agendó cita → Asistió → Seguimiento → Cierre), más la detección de "agendó cita" que mueve la tarjeta sola.
+**Procedimiento ejecutable completo (setup del PIT, endpoints con curl, mapeo escalón→etapa):** `references/receta-crm-lead-machine.md`. Claves de diseño:
 - *Responder ≠ interesado* → etapas separadas.
-- El lead magnet = **tag**, no etapa (es regalo condicional).
+- El lead magnet = **tag** (`leadmagnet-enviado`), no etapa (es regalo condicional).
 - `temp-*` se CAMBIA (remove el viejo), no se acumula.
-- Sin CRM → `sync_activo:false` y el estado local (`linkedin/conversaciones.json`) es la única fuente.
+- `source` de la oportunidad SIEMPRE el mismo valor exacto (`LinkedIn Nurture`).
+- Sin Lead Machine → `sync_activo:false` y el estado local (`linkedin/conversaciones.json`) es la única fuente.
 
 ## Archivos y estado
 - **Estado (gitignored) `linkedin/`:** `config.json` (copiar de `config.example.json`; limits, kill_switch, lead magnet, agenda, crm, runtime), `seen-users.json` (dedupe por vanity slug `/in/<slug>`), `conversaciones.json` (la escalera, con `research` por hilo), `pending/`, `posted/`.

@@ -37,9 +37,10 @@
   "ebook_url_fallback": "<URL del lead magnet por si el adjunto falla>",
   "crm": {
     "sync_activo": false,
-    "_nota": "Si tienes CRM (ej. GoHighLevel), activa y llena. Si no, dejalo en false: el estado local es la fuente.",
-    "pipeline_id": "<id del pipeline de nurture>",
-    "pipeline_name": "<nombre>",
+    "proveedor": "NetUs Lead Machine",
+    "_nota": "Sync a Lead Machine via API con PIT. Setup completo (crear pipeline de 9 etapas, generar PIT, descubrir IDs): .claude/skills/linkedin-nurture/references/receta-crm-lead-machine.md. Credenciales en .env (LEADMACHINE_PIT y LEADMACHINE_LOCATION_ID), NUNCA aqui. Sin Lead Machine, dejar en false: el estado local es la fuente.",
+    "pipeline_id": "<id del pipeline 'LinkedIn Nurture'>",
+    "pipeline_name": "LinkedIn Nurture",
     "stage_ids": {
       "conectado": "<id>",
       "conversacion_iniciada": "<id>",
@@ -59,6 +60,7 @@
     },
     "source": "LinkedIn Nurture",
     "_source_nota": "Usar SIEMPRE el mismo valor exacto en las oportunidades o los filtros por origen se rompen.",
+    "custom_field_linkedin_id": "<id del custom field 'LinkedIn Profile URL' (opcional, recomendado)>",
     "consultation_calendar_ids": []
   },
   "runtime": {

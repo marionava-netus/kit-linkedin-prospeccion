@@ -135,15 +135,15 @@ Borrador: "<texto del mensaje>"
 
 > 🔎 **La verdad del envío está en el hilo vivo**, no en el checkbox de `posted/` ni en la etapa del CRM. Si una corrida muere sin guardar estado: cruzar log + `TASKS` + hilos de `/messaging/` antes de contar el cap del día.
 
-## Sync a CRM (OPCIONAL — si `config.crm.sync_activo`)
-Aplica si el usuario tiene un CRM con API (ej. GoHighLevel). **Nunca escribir en el CRM vía navegador** — solo API/MCP. Diseño recomendado del pipeline (alineado a RECON — mide **nivel de conversación**, no "qué mandamos"):
+## Sync a NetUs Lead Machine (si `config.crm.sync_activo`)
+El CRM del kit es **Lead Machine**, vía API REST con el PIT — llamadas exactas (endpoints, payloads, curl) en `.claude/skills/linkedin-nurture/references/receta-crm-lead-machine.md`. **Nunca escribir en el CRM vía navegador** — solo API. Diseño recomendado del pipeline (alineado a RECON — mide **nivel de conversación**, no "qué mandamos"):
 
 Etapas: *Conectado* → *Conversación iniciada* → *Respondió* → *Interesad@* → *Invitado a cita* → *Agendó cita* → *Asistió* → *Seguimiento* → *Cierre*. Clave: **responder ≠ interesado** (etapas separadas); el lead magnet = **tag** `leadmagnet-enviado`, no etapa.
 
 Mapeo escalón → etapa: M1→*Conectado* · W/V1→*Conversación iniciada* · V2→sigue + tag · respuesta real→*Respondió* · abrió el tema→*Interesad@* · C→*Invitado a cita* · agendó→*Agendó cita* · ghost/opt-out→status *lost/abandoned*.
 
 **Por cada contacto con envío exitoso (en orden):**
-1. **Contacto** — SOLO si `hilo.crm.contact_id` está vacío (primera vez). Antes, best-effort anti-duplicado: buscar por nombre en el CRM; si aparece, usar ese id. En GHL: `contacts_upsert_contact` exige email O phone; si no hay → `contacts_create_contact` (permite solo-nombre). Guardar el `id` devuelto en `hilo.crm.contact_id`.
+1. **Contacto** — SOLO si `hilo.crm.contact_id` está vacío (primera vez). Antes, best-effort anti-duplicado: buscar por nombre. El upsert (`POST /contacts/upsert`) exige email O phone; si no hay → crear (`POST /contacts/`, permite solo-nombre). Guardar el `id` devuelto en `hilo.crm.contact_id`. Si está configurado, poblar el custom field de la URL de LinkedIn.
    - ⚠️ Si el upsert indica que el contacto **ya existía** → es un lead PREEXISTENTE: **leer su ficha antes del siguiente escalón** (puede traer historial, preferencias o DND). Ajustar el tono: ya conoce al usuario → reencuentro, no extraño.
    - Crear una **nota** con la URL de LinkedIn + headline + research + el texto enviado.
 2. **Tags:** `linkedin-nurture` (base) · `temp-<frio|tibio|caliente>` · condicionales `leadmagnet-enviado` / `opt-out` / `agendo-cita`. **`temp-*` se CAMBIA, no se acumula:** al subir temperatura, remover el `temp-*` anterior y agregar el nuevo.

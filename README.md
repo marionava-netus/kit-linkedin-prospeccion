@@ -70,8 +70,12 @@ Detalle completo: `.claude/skills/linkedin-nurture/SKILL.md` (estrategia) y `.cl
 └── .auth/                     ← tu sesión de navegador (NO se commitea)
 ```
 
-## CRM (opcional)
-Si usas un CRM con API (ej. GoHighLevel), activa `crm.sync_activo` en el config y llena los IDs: cada envío/respuesta se reflejará como contacto + nota + tags + oportunidad en un pipeline de nurture. Sin CRM, el estado local (`linkedin/conversaciones.json`) es la fuente de verdad.
+## CRM: pipeline en NetUs Lead Machine (recomendado)
+El kit sincroniza cada avance a un pipeline **"LinkedIn Nurture"** en **Lead Machine**: contacto + nota del research + tags de temperatura + **oportunidad que avanza de etapa** conforme avanza la conversación, y detección de "agendó cita" que mueve la tarjeta sola.
+
+**Setup (una vez):** crea el pipeline de 9 etapas en Lead Machine, genera tu **PIT** (token de integración privada), guarda `LEADMACHINE_PIT` y `LEADMACHINE_LOCATION_ID` en `.env`, llena los IDs en `linkedin/config.json` y activa `crm.sync_activo`. Guía paso a paso con las llamadas exactas: `.claude/skills/linkedin-nurture/references/receta-crm-lead-machine.md`.
+
+Sin Lead Machine, deja `crm.sync_activo:false` y el estado local (`linkedin/conversaciones.json`) es la fuente de verdad.
 
 ## Automatización con cron (avanzado, opcional)
 Cuando lleves semanas operando sin fricción, puedes programar la Fase A (investigar + redactar, sin enviar) en automático: ver `scripts/linkedin-fase-a-cron.sh.example`.
