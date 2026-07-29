@@ -1,6 +1,8 @@
-# RECON — Framework de prospección en frío
+# CERCA — Metodología de mensajes de prospección
 
 Metodología de **prospección en frío** por redes sociales (LinkedIn, IG, FB) y WhatsApp. Aplica a **todo mensaje de prospección/nurture** que se redacte con este kit.
+
+**CERCA** = **C**ontexto real · **E**scucha · **R**elación (conectar como par) · **C**onversación con valor · **A**cuerdo (la cita, al final).
 
 ## Regla madre
 **NUNCA vender en el mensaje.** El objetivo de cada mensaje NO es vender — es conseguir la **siguiente conversación**. La gente no responde cuando siente que le quieren vender.

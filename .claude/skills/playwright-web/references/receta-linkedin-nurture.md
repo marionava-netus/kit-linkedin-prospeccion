@@ -49,7 +49,7 @@ npx playwright-cli -s=linkedin open "https://www.linkedin.com/mynetwork/invite-c
 - **Tuteo ("tú")** por default — cercano, colega, práctico (ajustable en `config.tone`). Excepción: perfil claramente formal/senior → override puntual.
 - Dominio real del sector del prospecto (su jerga, sus dolores). Honesto, sin prometer de más. El lead magnet es **regalo**, no gancho; la cita solo cuando ya hay conversación real.
 - **MUY breve: 2 frases máximo por mensaje** (regla aprendida en operación real — los mensajes largos se sienten a plantilla). Estructura mínima: saludo + 1 observación anclada en un dato real + 1 pregunta abierta. Se lee en 5 segundos. Empático, humano, específico al contacto.
-- **Seguir el framework RECON** (`references/recon-framework.md`): nunca vender en el mensaje, el objetivo es la SIGUIENTE conversación. Al responder tras su reply → profundizar sin acelerar (observación profesional + curiosidad + pregunta abierta sobre ellos). Lead magnet/cita solo cuando el prospecto abre el tema.
+- **Seguir la metodología CERCA** (`references/metodologia-cerca.md`): nunca vender en el mensaje, el objetivo es la SIGUIENTE conversación. Al responder tras su reply → profundizar sin acelerar (observación profesional + curiosidad + pregunta abierta sobre ellos). Lead magnet/cita solo cuando el prospecto abre el tema.
 
 ### Ejemplos de drafts (ajustar SIEMPRE al research real y al ICP del usuario)
 - **W (comentario en su post):** *"Buenísimo el cierre de mes con tu equipo, Juan 👏 Se nota cuando un equipo jala parejo. Felicidades."*
@@ -63,7 +63,7 @@ npx playwright-cli -s=linkedin open "https://www.linkedin.com/mynetwork/invite-c
 - **C (solo tibio/caliente):** *"Me da gusto que te resonó, Juan. Justo eso que mencionas [dolor real que dijo] es de lo que ayudo a resolver. Si quieres armamos una sesión corta, sin costo, y te muestro cómo se vería en tu caso. Aquí agarras el horario que te acomode: {agenda}"*
 
 **Elegir el link de agenda (`config.agenda`):**
-- **Tipo de link por TEMPERATURA (RECON):** `cita_directa` si **caliente** (abrió el tema con fuerza, pidió hablar) → va directo al calendario; `contexto` (landing/página con video) si **tibio** y aún necesita entender la oferta.
+- **Tipo de link por TEMPERATURA (CERCA):** `cita_directa` si **caliente** (abrió el tema con fuerza, pidió hablar) → va directo al calendario; `contexto` (landing/página con video) si **tibio** y aún necesita entender la oferta.
 - No hardcodear links: siempre desde `config.agenda`.
 
 ## Anti-baneo (CRÍTICO — cuenta principal del usuario)
@@ -136,7 +136,7 @@ Borrador: "<texto del mensaje>"
 > 🔎 **La verdad del envío está en el hilo vivo**, no en el checkbox de `posted/` ni en la etapa del CRM. Si una corrida muere sin guardar estado: cruzar log + `TASKS` + hilos de `/messaging/` antes de contar el cap del día.
 
 ## Sync a NetUs Lead Machine (si `config.crm.sync_activo`)
-El CRM del kit es **Lead Machine**, vía API REST con el PIT — llamadas exactas (endpoints, payloads, curl) en `.claude/skills/linkedin-nurture/references/receta-crm-lead-machine.md`. **Nunca escribir en el CRM vía navegador** — solo API. Diseño recomendado del pipeline (alineado a RECON — mide **nivel de conversación**, no "qué mandamos"):
+El CRM del kit es **Lead Machine**, vía API REST con el PIT — llamadas exactas (endpoints, payloads, curl) en `.claude/skills/linkedin-nurture/references/receta-crm-lead-machine.md`. **Nunca escribir en el CRM vía navegador** — solo API. Diseño recomendado del pipeline (alineado a CERCA — mide **nivel de conversación**, no "qué mandamos"):
 
 Etapas: *Conectado* → *Conversación iniciada* → *Respondió* → *Interesad@* → *Invitado a cita* → *Agendó cita* → *Asistió* → *Seguimiento* → *Cierre*. Clave: **responder ≠ interesado** (etapas separadas); el lead magnet = **tag** `leadmagnet-enviado`, no etapa.
 

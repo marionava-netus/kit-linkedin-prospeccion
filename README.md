@@ -1,6 +1,6 @@
 # Kit de Prospección por LinkedIn
 
-Sistema semi-automático para **activar tus conexiones de LinkedIn** y convertirlas en conversaciones reales → citas. Opera con [Claude Code](https://claude.com/claude-code) + Playwright: **investiga** cada perfil, **redacta** mensajes personalizados (sin vender — framework RECON), tú **apruebas**, y el sistema **envía** con ritmo humano y frenos anti-baneo.
+Sistema semi-automático para **activar tus conexiones de LinkedIn** y convertirlas en conversaciones reales → citas. Opera con [Claude Code](https://claude.com/claude-code) + Playwright: **investiga** cada perfil, **redacta** mensajes personalizados (sin vender — metodología CERCA), tú **apruebas**, y el sistema **envía** con ritmo humano y frenos anti-baneo.
 
 > ⚠️ **Léelo antes de empezar:** la automatización de mensajes va contra los Términos de LinkedIn; el riesgo es de tu cuenta. Este kit lo mitiga (caps bajos, rampa, navegador visible, detección de fricción, kill-switch), pero el riesgo nunca es cero. Todo se envía solo con tu aprobación.
 
@@ -61,7 +61,7 @@ Detalle completo: `.claude/skills/linkedin-nurture/SKILL.md` (estrategia) y `.cl
 ├── context/mi-negocio.md      ← TU negocio, oferta y voz (llenar)
 ├── references/
 │   ├── cliente-ideal.md       ← TU cliente ideal (llenar)
-│   └── recon-framework.md     ← el framework de mensajes
+│   └── metodologia-cerca.md     ← el framework de mensajes
 ├── .claude/skills/
 │   ├── linkedin-nurture/      ← la estrategia
 │   └── playwright-web/        ← infra de navegador + manual de operación

@@ -18,7 +18,7 @@ En Lead Machine → **Opportunities → Pipelines**, crea un pipeline (ej. **"Li
 8. Seguimiento
 9. Cierre
 
-**Diseño (alineado a RECON):** el pipeline mide **nivel de conversación/interés**, no "qué mandamos". Clave: *responder ≠ interesado* — por eso son etapas separadas. El lead magnet = **tag** (`leadmagnet-enviado`), no etapa (es regalo condicional).
+**Diseño (alineado a CERCA):** el pipeline mide **nivel de conversación/interés**, no "qué mandamos". Clave: *responder ≠ interesado* — por eso son etapas separadas. El lead magnet = **tag** (`leadmagnet-enviado`), no etapa (es regalo condicional).
 
 ### 2. Genera tu PIT (Private Integration Token)
 En tu subcuenta de Lead Machine → **Configuración → Integraciones Privadas (Private Integrations)** → crear integración con estos permisos (scopes):

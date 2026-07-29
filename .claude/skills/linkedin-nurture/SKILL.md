@@ -1,11 +1,11 @@
 ---
 name: linkedin-nurture
-description: Sistema de prospección/nurturing de LinkedIn — activa tus conexiones con Playwright + el framework RECON. investiga perfiles, conversa sin vender, regala un lead magnet, invita a una cita y (opcional) sincroniza a tu CRM. Úsala SIEMPRE que el usuario diga "revisa los siguientes N de LinkedIn", "revisa las respuestas de LinkedIn", "envía los mensajes de LinkedIn aprobados", "detén LinkedIn", o cuando se hable de la estrategia/prospección/nurture de LinkedIn.
+description: Sistema de prospección/nurturing de LinkedIn — activa tus conexiones con Playwright + la metodología CERCA. investiga perfiles, conversa sin vender, regala un lead magnet, invita a una cita y (opcional) sincroniza a tu CRM. Úsala SIEMPRE que el usuario diga "revisa los siguientes N de LinkedIn", "revisa las respuestas de LinkedIn", "envía los mensajes de LinkedIn aprobados", "detén LinkedIn", o cuando se hable de la estrategia/prospección/nurture de LinkedIn.
 ---
 
 # Nurturing de LinkedIn
 
-Sistema semi-automático (Playwright CLI) para **activar las conexiones de LinkedIn** del usuario y convertirlas en conversaciones reales → citas. Contacto por contacto: **investiga** perfil + posts + web → **conversa** genuino (framework RECON) → **regala el lead magnet** → a los tibios/calientes los **invita a una cita** → (opcional) sincroniza a tu CRM.
+Sistema semi-automático (Playwright CLI) para **activar las conexiones de LinkedIn** del usuario y convertirlas en conversaciones reales → citas. Contacto por contacto: **investiga** perfil + posts + web → **conversa** genuino (metodología CERCA) → **regala el lead magnet** → a los tibios/calientes los **invita a una cita** → (opcional) sincroniza a tu CRM.
 
 > **Detalle ejecutable completo (selectores, procedimientos paso a paso):** `.claude/skills/playwright-web/references/receta-linkedin-nurture.md`. Este SKILL.md es el mapa; la receta es el manual de operación. Léela al retomar. Infra Playwright: skill `playwright-web`.
 > **Quién es el prospecto ideal y con qué voz se escribe:** `context/mi-negocio.md` + `references/cliente-ideal.md`. **Llénalos antes de operar** — sin ICP definido no se puede curar ni personalizar.
@@ -39,7 +39,7 @@ También aplica cuando se hable de la **estrategia/prospección/nurture de Linke
 |---|---|---|
 | **M1** | mensaje de "gusto conectar" (manual o con tu herramienta de conexión) | estado inicial |
 | **W** | Like + 1 comentario en su post reciente | **solo si tiene post propio ≤10 días**; si no → V1 |
-| **V1** | DM de apertura RECON, **cero pitch**, 100% sobre ellos | responde → sube temperatura |
+| **V1** | DM de apertura CERCA, **cero pitch**, 100% sobre ellos | responde → sube temperatura |
 | **V2** | Regala el lead magnet (PDF **adjunto** en el DM) — **regalo condicional** | reacciona / responde |
 | **C** | Invita a una cita (link de agenda) — **SOLO tibio/caliente** | agenda / declina / ghost |
 | **X** | Cerrado (agendó) o `seguimiento_pausado` | terminal |
@@ -48,7 +48,7 @@ También aplica cuando se hable de la **estrategia/prospección/nurture de Linke
 - **Temperatura:** `frío` = sin respuesta / solo "gracias" (nunca llega a C) · `tibio` = respondió con frase real · `caliente` = expresó un dolor o preguntó qué haces. **C se desbloquea solo con tibio/caliente.**
 - **El lead magnet (V2) es regalo condicional, no escalón obligatorio:** si ya está caliente y conviene, saltar a C. Si solo se presta la conversación, regalar el PDF.
 
-## Framework RECON (clave del tono) — ver `references/recon-framework.md`
+## Metodología CERCA (clave del tono) — ver `references/metodologia-cerca.md`
 - **Nunca vender en el mensaje. El objetivo es la SIGUIENTE conversación.**
 - **Mensajes MUY breves (2 frases máx):** saludo + observación anclada en un dato real + pregunta abierta. Se lee en 5 segundos.
 - **V1 = 100% sobre el prospecto:** nunca mencionar lo que hace el usuario/su empresa ni sonar a venta. Eso se revela mucho después, cuando ya hay conversación real.

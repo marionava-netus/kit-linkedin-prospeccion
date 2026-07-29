@@ -30,8 +30,8 @@ Esta corrida REDACTA, NO ENVIA. Nada de li-senddm.js ni li-comment.js en modo en
 
 ### PASOS
 1) Abre la sesion: npx playwright-cli -s=linkedin open "<url>" --persistent --profile=.auth/pw-linkedin --browser=chrome (SIEMPRE con --persistent --profile; verifica con list que user-data-dir sea .auth/pw-linkedin).
-2) REVISAR RESPUESTAS: por cada hilo activo en linkedin/conversaciones.json con esperando_respuesta=true, detecta si el prospecto respondio (li-readdm.js / li-readthread.js). Si respondio: sube la temperatura segun RECON y REDACTA la respuesta a pending/ (profundizar sin acelerar, cero pitch; V2/C solo si esta tibio/caliente).
-3) COSECHAR NUEVOS: toma hasta 3 conexiones nuevas no-vistas (dedupe contra linkedin/seen-users.json), INVESTIGA su perfil (li-profile.js, posts, web con WebFetch, email/tel con li-contactinfo.js), cura con los criterios de references/cliente-ideal.md y REDACTA el W o V1 RECON a pending/ (2 frases max, tuteo, 100% sobre el prospecto, cero pitch, anclado en un dato real; variacion obligatoria).
+2) REVISAR RESPUESTAS: por cada hilo activo en linkedin/conversaciones.json con esperando_respuesta=true, detecta si el prospecto respondio (li-readdm.js / li-readthread.js). Si respondio: sube la temperatura segun CERCA y REDACTA la respuesta a pending/ (profundizar sin acelerar, cero pitch; V2/C solo si esta tibio/caliente).
+3) COSECHAR NUEVOS: toma hasta 3 conexiones nuevas no-vistas (dedupe contra linkedin/seen-users.json), INVESTIGA su perfil (li-profile.js, posts, web con WebFetch, email/tel con li-contactinfo.js), cura con los criterios de references/cliente-ideal.md y REDACTA el W o V1 CERCA a pending/ (2 frases max, tuteo, 100% sobre el prospecto, cero pitch, anclado en un dato real; variacion obligatoria).
 4) Actualiza conversaciones.json / seen-users.json / runtime.last_fase_a con el helper atomico (node scripts/li-save-json.cjs) — NUNCA escritura directa.
 5) Deja en el log un resumen: redactados (con nombres), descartados y por que, respuestas detectadas.
 
